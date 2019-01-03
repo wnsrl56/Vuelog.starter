@@ -3,7 +3,9 @@
     <header>
       <h1 class="brand">
         <router-link to="/">
-          <span v-text="i18nify(config.brand)"></span>
+          <div class="brand-wrapper">
+            <span v-text="i18nify(config.brand)"></span>
+          </div>
         </router-link>
       </h1>
       <nav class="header-menu">
@@ -115,6 +117,8 @@
 </script>
 
 <style lang="stylus" scoped>
+  .brand-wrapper
+    line-height 1.7em
   .header-wrap
     background rgba(255, 255, 255, 0)
     box-shadow 0 0 4px rgba(0, 0, 0, .25)
@@ -370,7 +374,7 @@
       display block
 
     .side-menu
-      display blockF
+      display block
 
     .side-menu-open
       transform translate(0, 0)
