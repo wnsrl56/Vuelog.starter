@@ -2,6 +2,11 @@
 *:before
 *:after
   box-sizing border-box
+@font-face
+  font-family 'NotoSerifKR'
+  src url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NotoSerifKR.woff') format('woff')
+  font-weight normal
+  font-style normal
 
 html
 body
@@ -11,7 +16,7 @@ body
 
 body
   color #34495e
-  font-family 'PingFang SC', 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif
+  font-family 'NotoSerifKR'
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
   overflow-y scroll
@@ -138,10 +143,11 @@ a
   text-decoration none
   color #42b983
   cursor pointer
-  font-weight 600
+
 
 a:hover
-  text-decoration underline
+  text-decoration none
+  color #2B3D4F
 
 a.button
   display inline-block

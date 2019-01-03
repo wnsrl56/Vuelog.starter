@@ -4,11 +4,7 @@ window.VUELOG_DATABASE = {
   config: {
     // The name of your site, will be displayed in browser tab and site header.
     brand: {
-      'en-US': 'Vuelog',
-      'zh-CN': 'Vuelog',
-      'de-DE': 'Vuelog',
-      'pt-BR': 'Vuelog',
-      'es-MX': 'Vuelog'
+      'en-US': 'Jun\'s DevLog',
     },
 
     // Put the site brand behind current page in `document.title`.
@@ -53,76 +49,32 @@ window.VUELOG_DATABASE = {
   navigation: [
     {
       label: {
-        'en-US': 'Guide',
-        'zh-CN': '指南',
-        'de-DE': 'Anleitung',
-        'pt-BR': 'Guia',
-        'es-MX': 'Guía'
+        'en-US': 'Posts',
       },
       type: 'page',
-      path: '/page/guide'
+      path: '/page/posts'
     },
     {
       label: {
         'en-US': 'About',
-        'zh-CN': '关于',
-        'de-DE': 'Über',
-        'pt-BR': 'Sobre',
-        'es-MX': 'Acerca de'
       },
       type: 'page',
       path: '/page/about'
     },
     {
       label: {
-        'en-US': 'Showcase',
-        'zh-CN': '示例',
-        'de-DE': 'Beispiele',
-        'pt-BR': 'Exemplos',
-        'es-MX': 'Ejemplos'
-      },
-      type: 'category',
-      path: '/blog/showcase'
-    },
-    {
-      label: {
         'en-US': 'Archive',
-        'zh-CN': '归档',
-        'de-DE': 'Archiv',
-        'pt-BR': 'Arquivo',
-        'es-MX': 'Archivo'
       },
       type: 'archive',
       path: '/archive'
     },
     {
       label: {
-        'en-US': 'Links',
-        'zh-CN': '链接',
-        'de-DE': 'Links',
-        'pt-BR': 'Links',
-        'es-MX': 'Enlaces'
+        'en-US': 'GitHub',
       },
-      type: 'dropdown',
-      path: '', // (OPTIONAL) dropdown can be routable too if you set a valid route path
-      children: [
-        {
-          label: { 'en-US': 'Weibo', 'zh-CN': '微博', 'de-DE': 'Weibo', 'pt-BR': 'Weibo', 'es-MX': 'Weibo' },
-          type: 'outgoing',
-          link: 'http://weibo.com/myst729'
-        },
-        {
-          label: 'GitHub',
-          type: 'outgoing',
-          link: 'https://github.com/myst729'
-        },
-        {
-          label: 'StackOverflow',
-          type: 'outgoing',
-          link: 'https://stackoverflow.com/users/1032492'
-        }
-      ]
-    }
+      type: 'outgoing',
+      link: 'https://github.com/wnsrl56',
+    },
   ],
 
   pages: [

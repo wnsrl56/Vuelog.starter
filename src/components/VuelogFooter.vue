@@ -1,20 +1,16 @@
 <template>
   <footer>
     <div>
-      <a :href="system.website" target="_blank" rel="noopener noreferrer" v-text="system.brand"></a> &amp; <span>&#10084;</span>
+      <p>Powered By <a :href="system.website" target="_blank" rel="noopener noreferrer" v-text="system.brand"></a></p>
     </div>
-    <vuelog-language class="lang" v-if="enableSwitch"></vuelog-language>
   </footer>
 </template>
 
 <script>
-  import VuelogLanguage from './VuelogLanguage'
-
   export default {
     name: 'vuelog-footer',
 
     components: {
-      VuelogLanguage
     },
 
     computed: {
@@ -38,7 +34,7 @@
     font-size 15px
     font-weight 600
     width 900px
-    padding 20px 0
+    padding 10px 0
     text-align center
     position relative
 

@@ -3,23 +3,28 @@
     <header>
       <h1 class="brand">
         <router-link to="/">
-          <img :src="config.logo">
           <span v-text="i18nify(config.brand)"></span>
         </router-link>
       </h1>
       <nav class="header-menu">
         <ul>
-          <li v-for="(item, index) in navigation" :key="index" :class="{'nav-dropdown-container': item.type === 'dropdown'}">
+          <li v-for="(item, index) in navigation" :key="index"
+              :class="{'nav-dropdown-container': item.type === 'dropdown'}">
             <span v-if="item.type === 'dropdown' && !item.path" v-text="i18nify(item.label)"></span>
-            <router-link v-if="item.type === 'dropdown' && item.path" :to="item.path" v-text="i18nify(item.label)"></router-link>
+            <router-link v-if="item.type === 'dropdown' && item.path" :to="item.path"
+                         v-text="i18nify(item.label)"></router-link>
             <ul v-if="item.type === 'dropdown'" class="nav-dropdown">
               <li v-for="(child, index) in item.children" :key="index">
-                <a v-if="child.type === 'outgoing'" :href="child.link" v-text="i18nify(child.label)" target="_blank" rel="noopener noreferrer"></a>
-                <router-link v-if="child.type !== 'outgoing'" :to="child.path" v-text="i18nify(child.label)"></router-link>
+                <a v-if="child.type === 'outgoing'" :href="child.link" v-text="i18nify(child.label)" target="_blank"
+                   rel="noopener noreferrer"></a>
+                <router-link v-if="child.type !== 'outgoing'" :to="child.path"
+                             v-text="i18nify(child.label)"></router-link>
               </li>
             </ul>
-            <a v-if="item.type === 'outgoing'" :href="item.link" target="_blank" rel="noopener noreferrer" v-text="i18nify(item.label)"></a>
-            <router-link v-if="item.type !== 'dropdown' && item.type !== 'outgoing'" :to="item.path" v-text="i18nify(item.label)"></router-link>
+            <a v-if="item.type === 'outgoing'" :href="item.link" target="_blank" rel="noopener noreferrer"
+               v-text="i18nify(item.label)"></a>
+            <router-link v-if="item.type !== 'dropdown' && item.type !== 'outgoing'" :to="item.path"
+                         v-text="i18nify(item.label)"></router-link>
           </li>
         </ul>
       </nav>
@@ -28,17 +33,23 @@
     <div class="side-menu" :class="{'side-menu-open': menu}">
       <ul>
         <li class="side-brand"><h2 v-text="i18nify(config.brand)"></h2></li>
-        <li v-for="(item, index) in navigation" :key="index" :class="{'side-dropdown-container': item.type === 'dropdown'}">
+        <li v-for="(item, index) in navigation" :key="index"
+            :class="{'side-dropdown-container': item.type === 'dropdown'}">
           <span v-if="item.type === 'dropdown' && !item.path" v-text="i18nify(item.label)"></span>
-          <router-link v-if="item.type === 'dropdown' && item.path" :to="item.path" v-text="i18nify(item.label)"></router-link>
+          <router-link v-if="item.type === 'dropdown' && item.path" :to="item.path"
+                       v-text="i18nify(item.label)"></router-link>
           <ul v-if="item.type === 'dropdown'" class="side-dropdown">
             <li v-for="(child, index) in item.children" :key="index">
-              <a v-if="child.type === 'outgoing'" :href="child.link" v-text="i18nify(child.label)" target="_blank" rel="noopener noreferrer"></a>
-              <router-link v-if="child.type !== 'outgoing'" :to="child.path" v-text="i18nify(child.label)"></router-link>
+              <a v-if="child.type === 'outgoing'" :href="child.link" v-text="i18nify(child.label)" target="_blank"
+                 rel="noopener noreferrer"></a>
+              <router-link v-if="child.type !== 'outgoing'" :to="child.path"
+                           v-text="i18nify(child.label)"></router-link>
             </li>
           </ul>
-          <a v-if="item.type === 'outgoing'" :href="item.link" target="_blank" rel="noopener noreferrer" v-text="i18nify(item.label)"></a>
-          <router-link v-if="item.type !== 'dropdown' && item.type !== 'outgoing'" :to="item.path" v-text="i18nify(item.label)"></router-link>
+          <a v-if="item.type === 'outgoing'" :href="item.link" target="_blank" rel="noopener noreferrer"
+             v-text="i18nify(item.label)"></a>
+          <router-link v-if="item.type !== 'dropdown' && item.type !== 'outgoing'" :to="item.path"
+                       v-text="i18nify(item.label)"></router-link>
         </li>
       </ul>
     </div>
@@ -49,7 +60,7 @@
 </template>
 
 <script>
-  import { retrieveByLanguage } from '../utils'
+  import {retrieveByLanguage} from '../utils'
 
   export default {
     name: 'vuelog-header',
@@ -105,10 +116,9 @@
 
 <style lang="stylus" scoped>
   .header-wrap
-    background rgba(255, 255, 255, .8)
+    background rgba(255, 255, 255, 0)
     box-shadow 0 0 4px rgba(0, 0, 0, .25)
     width 100%
-    position fixed
     left 0
     right 0
     top 0
@@ -118,14 +128,14 @@
     display flex
     max-width 980px
     margin 0 auto
-    padding 25px 40px
+    padding 12px 40px
 
   a:hover
     text-decoration none
 
   .brand
     flex 1
-    font-size 24px
+    font-size 21px
     margin 0
 
     a
@@ -188,7 +198,7 @@
       font-size .9em
       padding 0 1.4em
       white-space nowrap
-    
+
       &:hover
         color #42b983
         border-bottom none
@@ -299,7 +309,8 @@
           border-right 4px solid transparent
           border-top 5px solid #ccc
 
-      a:hover
+      a: hover
+
       a.router-link-active
         color #42b983
         padding-bottom 0
@@ -359,7 +370,7 @@
       display block
 
     .side-menu
-      display block
+      display blockF
 
     .side-menu-open
       transform translate(0, 0)

@@ -7,7 +7,7 @@
       <ul>
         <li v-for="(post, index) in archive.posts" :key="index">
           <router-link :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}" v-text="i18nify(post.title)"></router-link>
-          <span v-text="' ( ' + post.date + ' )'"></span>
+          <span v-text="'- ' + convertDateFormat(post.date)"></span>
         </li>
         <li v-if="archive.posts.length === 0" v-text="$t('archive.empty')"></li>
       </ul>
@@ -18,54 +18,43 @@
       <ul>
         <li v-for="(post, index) in archive.posts" :key="index">
           <router-link :to="{name: 'post', params: {category: post.category, slug: post.slug, year: archive.year}}" v-text="i18nify(post.title)"></router-link>
-          <span> ( </span>
-          <router-link :to="{name: 'category', params: {category: post.category}}" v-text="i18nify(post.categoryTitle)"></router-link>
-          <span> )</span>
+          <span class="tag-button" v-text="i18nify(post.categoryTitle)" />
         </li>
         <li v-if="archive.posts.length === 0" v-text="$t('archive.empty')"></li>
       </ul>
     </div>
 
     <div v-if="displayType === 'archive'" class="archive-body">
-      <h2 v-text="$t('archive.byCategory')"></h2>
+      <h2 v-text="$t('archive.byCategory').replace(':', '')"></h2>
       <ul>
         <li v-for="(category, index) in archive.postsByCategory" :key="index">
           <h4>
             <router-link :to="{name: 'archive-category', params: {category: category.slug}}" v-text="i18nify(category.title)"></router-link>
-            <span v-text="' (' + category.posts.length + ')'"></span>
+            <span class="posts-number" v-text="category.posts.length"></span>
           </h4>
           <ul>
             <li v-for="(post, index) in category.posts" :key="index">
               <router-link :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}" v-text="i18nify(post.title)"></router-link>
-              <span v-text="' ( ' + post.date + ' )'"></span>
+              <span class="show-date" v-text="'- ' + convertDateFormat(post.date)"></span>
             </li>
             <li v-if="category.posts.length === 0" v-text="$t('archive.empty')"></li>
           </ul>
         </li>
       </ul>
 
-      <h2 v-text="$t('archive.byYear')"></h2>
+      <h2 v-text="$t('archive.byYear').replace(':', '')"></h2>
       <ul>
         <li v-for="(year, index) in archive.postsByYear" :key="index">
           <h4>
             <router-link :to="{name: 'archive-year', params: {year: year.year}}" v-text="year.year"></router-link>
-            <span v-text="' (' + year.posts.length + ')'"></span>
+            <span class="posts-number" v-text="year.posts.length"></span>
           </h4>
           <ul>
             <li v-for="(post, index) in year.posts" :key="index">
               <router-link :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}" v-text="i18nify(post.title)"></router-link>
-              <span> ( </span>
-              <router-link :to="{name: 'category', params: {category: post.category}}" v-text="i18nify(post.categoryTitle)"></router-link>
-              <span> )</span>
+              <span class="tag-button" v-text="i18nify(post.categoryTitle)" />
             </li>
           </ul>
-        </li>
-      </ul>
-
-      <h2 v-text="$t('archive.pages')"></h2>
-      <ul>
-        <li v-for="(page, index) in archive.pages" :key="index" v-if="!page.exclude">
-          <router-link :to="{name: 'page', params: {page: page.slug}}" v-text="i18nify(page.title)"></router-link>
         </li>
       </ul>
     </div>
@@ -169,7 +158,22 @@
           postsByYear: this.postsByYear,
           pages: this.pages
         }
-      }
+      },
+      map (iter, fn) {
+        var res = []
+        var i = -1
+
+        while (++i < iter.length) {
+          var item = iter[i]
+
+          res.push(fn(item))
+        }
+
+        return res.join('')
+      },
+      convertDateFormat (date) {
+        return date && date.length ? this.map(date, function (v) { return v.replace('-', '/') }) : date
+      },
     },
 
     created () {
@@ -187,6 +191,23 @@
 </script>
 
 <style lang="stylus" scoped>
+  .show-date
+    font-size 13px
+  .tag-button
+    height 24px
+    padding 2px 6px
+    margin 2px
+    font-size 11px
+    color #ffffff
+    background-color #209cee
+    border-radius 4px
+  .posts-number
+    padding 0px 4px 1px 4px
+    font-size 11px
+    color #ffffff
+    background-color #2B3D4F
+    border-radius 4px
+
   .archive-enter-active
   .archive-leave-active
     transition opacity .3s ease

@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img src="../assets/img/vuelog.svg">
     <h1 v-text="system.brand"></h1>
     <p v-text="$t('home.description')"></p>
     <a class="button" :href="download" v-text="$t('home.download', [system.version])" target="_blank" rel="noopener noreferrer"></a>
