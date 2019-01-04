@@ -113,7 +113,7 @@
     flex 1
     display flex
     flex-direction column
-    padding 100px 30px 15px
+    padding 60px 30px 15px
     width 100%
     max-width 900px
 

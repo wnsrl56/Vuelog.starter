@@ -119,6 +119,7 @@
 <style lang="stylus" scoped>
   .brand-wrapper
     line-height 1.7em
+
   .header-wrap
     background rgba(255, 255, 255, 0)
     box-shadow 0 0 4px rgba(0, 0, 0, .25)
@@ -132,14 +133,13 @@
     display flex
     max-width 980px
     margin 0 auto
-    padding 12px 40px
 
   a:hover
     text-decoration none
 
   .brand
     flex 1
-    font-size 21px
+    font-size 18px
     margin 0
 
     a
@@ -150,8 +150,9 @@
     img
     span
       display inline-block
-      height 32px
+      height 40px
       vertical-align middle
+      padding 4px
 
     span
       margin-left 5px
@@ -335,10 +336,6 @@
     bottom 0
     z-index 6000
 
-  @media screen and (max-width: 1059px)
-    header
-      padding 10px 40px
-
   @media screen and (max-width: 999px)
     .header-wrap
       box-shadow none
@@ -347,6 +344,7 @@
       background #fff
       border-bottom 1px solid #ddd
       position relative
+      height 48px
       z-index 8000
 
     .brand
