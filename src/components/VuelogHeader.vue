@@ -121,13 +121,14 @@
     line-height 1.7em
 
   .header-wrap
-    background rgba(255, 255, 255, 0)
+    background #23282D
     box-shadow 0 0 4px rgba(0, 0, 0, .25)
     width 100%
     left 0
     right 0
     top 0
     z-index 8000
+    user-select none
 
   header
     display flex
@@ -143,7 +144,7 @@
     margin 0
 
     a
-      color #34495e
+      color #ffe67d
       display inline-block
       font-weight 500
 
@@ -171,7 +172,7 @@
       margin-left 0
 
     a
-      color #7f8c8d
+      color #ffffbb
       font-size 15px
       font-weight 400
 
@@ -181,7 +182,7 @@
         padding-bottom 2px
 
       &.router-link-active
-        color #34495e
+        color #42b983
 
   .nav-dropdown
     position absolute
@@ -251,7 +252,7 @@
     width 32px
     position absolute
     left 10px
-    top 10px
+    top 5px
     z-index 9000
 
   .side-menu
@@ -341,10 +342,10 @@
       box-shadow none
 
     header
-      background #fff
+      background #23282D
       border-bottom 1px solid #ddd
       position relative
-      height 48px
+      height 40px
       z-index 8000
 
     .brand

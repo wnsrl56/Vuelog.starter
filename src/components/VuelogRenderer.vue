@@ -8,17 +8,13 @@
           <router-link :to="{name: 'post', params: {category: metadata.category, slug: metadata.slug, year: metadata.year}}" v-text="i18nify(metadata.title)"></router-link>
         </h2>
         <h4 class="content-meta" v-if="type !== 'page'">
-          <span v-text="$t(time.key, time.values)"></span>
-          <span> / </span>
-          <router-link :to="{name: 'category', params: {category: metadata.category}}" v-text="i18nify(metadata.categoryTitle)"></router-link>
+          <span class="show-date" v-text="`${$t(time.key, time.values)} / `" />
+          <router-link class="tag-button" :to="{name: 'category', params: {category: metadata.category}}" v-text="i18nify(metadata.categoryTitle)"></router-link>
         </h4>
         <!-- used in posts view -->
         <div v-if="type === 'posts'">
-          <div class="content-container" v-html="content[0]"></div>
-          <div class="continue-reading">
-            <router-link :to="{name: 'post', params: {category: metadata.category, slug: metadata.slug, year: metadata.year}}" v-text="$t('reading.continued')"></router-link>
-          </div>
-        </div>
+          <div class="content-container" v-html="sliceContents(content[0])"></div>
+  </div>
         <!-- used in page/post view -->
         <div v-if="type !== 'posts'">
           <div class="content-container">
@@ -43,7 +39,7 @@
   export default {
     name: 'vuelog-renderer',
 
-    props: ['type', 'metadata'],
+    props: ['type', 'metadata', 'shortcut'],
 
     components: {
       VuelogPagination,
@@ -101,6 +97,10 @@
     },
 
     methods: {
+      sliceContents (content) {
+        const rawContent = content.replace(/(<([^>]+)>)/ig, '')
+        return this.shortcut && rawContent.length > 0 ? rawContent.slice(0, 150) : rawContent
+      },
       oops () {
         this.$router.replace('/oops')
       },
@@ -269,6 +269,18 @@
 </script>
 
 <style lang="stylus" scoped>
+  .show-date
+    font-size 14px
+
+  .tag-button
+    height 24px
+    padding 2px 6px
+    margin 2px
+    font-size 11px
+    color #ffffff
+    background-color #209cee
+    border-radius 4px
+
   .spinner
     display block
     height 48px
@@ -299,6 +311,7 @@
 
   .content-container
     flex 1
+    font-size 16px
 
   .continue-reading a:hover
     text-decoration none

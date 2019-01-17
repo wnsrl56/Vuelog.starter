@@ -2,7 +2,6 @@
   <div class="home">
     <h1 v-text="system.brand"></h1>
     <p v-text="$t('home.description')"></p>
-    <a class="button github" :href="system.project" target="_blank" rel="noopener noreferrer" v-text="$t('home.github')"></a>
   </div>
 </template>
 

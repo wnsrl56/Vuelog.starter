@@ -2,7 +2,7 @@
   <div class="posts">
     <div class="posts-body">
       <div class="post" v-for="(post, index) in dataset.posts" :key="index">
-        <vuelog-renderer class="post-body" :type="'posts'" :metadata="post"></vuelog-renderer>
+        <vuelog-renderer class="post-body" :type="'posts'" :metadata="post" :shortcut="true"></vuelog-renderer>
       </div>
     </div>
     <transition name="fade" mode="out-in">
@@ -32,12 +32,13 @@
         const postsCount = this.$store.getters.config.postsCount
         const posts = this.getPosts(collection.posts, p, postsCount)
         const siblings = this.getSiblings(p, Math.ceil(collection.posts.length / postsCount), category)
-        return {
+        const t = {
           posts,
           current: { p, label: category ? collection.title : this.$t('reading.blog') },
           prev: siblings.prev,
           next: siblings.next
         }
+        return t
       },
 
       active () {
@@ -50,16 +51,12 @@
 
       title () {
         const current = this.dataset.current
-        var title = retrieveByLanguage(current.label, this.active, this.config.defaultLang)
-        var brand = retrieveByLanguage(this.config.brand, this.active, this.config.defaultLang)
+        let title = retrieveByLanguage(current.label, this.active, this.config.defaultLang)
+        let brand = retrieveByLanguage(this.config.brand, this.active, this.config.defaultLang)
         if (current.p > 1) {
           title += ` | ${this.$t('reading.page', [current.p])}`
         }
-        if (this.config.brandTrailing) {
-          return title + ' | ' + brand
-        } else {
-          return brand + ' | ' + title
-        }
+        return this.config.brandTrailing ? `${title} | ${brand}` : `${brand} | ${title}`
       }
     },
 

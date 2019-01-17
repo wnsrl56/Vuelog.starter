@@ -1,7 +1,10 @@
 <template>
   <footer>
-    <div>
-      <p>Powered By <a :href="system.website" target="_blank" rel="noopener noreferrer" v-text="system.brand"></a></p>
+    <div class="copy">
+      <p>© 2019 <a href="/#/page/about">Jun</a> Powered By <a :href="system.website" target="_blank" rel="noopener noreferrer" v-text="system.brand"></a></p>
+    </div>
+    <div class="github">
+      <a href="https://github.com/wnsrl56" target="_blank" rel="noopener noreferrer">Github</a>
     </div>
   </footer>
 </template>
@@ -28,16 +31,29 @@
 </script>
 
 <style lang="stylus" scoped>
+  .github
+    float right
+    height 27px
+    color #4fc08d
+    padding 0px 4px
+    &:hover
+      color #5dc596
+
+  .copy
+    float left
+    p
+      display inline-block
+      margin 0
   footer
+    display inline-block
     border-top 1px solid #ddd
     color #7f8c8d
-    font-size 15px
+    font-size 13px
     font-weight 600
     width 900px
     padding 10px 0
     text-align center
     position relative
-
   span
     color #f66
 
@@ -56,7 +72,6 @@
 
     div
       float left
-
     .lang
       position static
       float right

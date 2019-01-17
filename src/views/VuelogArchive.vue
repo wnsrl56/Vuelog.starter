@@ -1,58 +1,102 @@
 <template>
   <div class="archive">
-    <div v-if="displayType === 'archive-category'" class="archive-body">
-      <i18n path="archive.inCategory" tag="h2">
-        <q v-text="i18nify(archive.title)"></q>
-      </i18n>
+    <div
+      v-if="displayType === 'archive-category'"
+      class="archive-body">
+      <h2 v-text="`Post in category \u{201D} ${i18nify(archive.title)} \u{201D}`" />
       <ul>
         <li v-for="(post, index) in archive.posts" :key="index">
-          <router-link :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}" v-text="i18nify(post.title)"></router-link>
-          <span v-text="'- ' + convertDateFormat(post.date)"></span>
+          <router-link
+            :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}"
+            v-text="i18nify(post.title)"
+          />
+          <span
+            v-text="`- ${convertDateFormat(post.date, v => v.replace('-', '/'))}`"
+          />
         </li>
-        <li v-if="archive.posts.length === 0" v-text="$t('archive.empty')"></li>
+        <li
+          v-if="archive.posts.length === 0"
+          v-text="$t('archive.empty')"
+        />
       </ul>
     </div>
 
     <div v-if="displayType === 'archive-year'" class="archive-body">
-      <h2 v-text="$t('archive.inYear', [archive.year])"></h2>
+      <h2 v-text="`Posts in year ${archive.year}`" />
       <ul>
         <li v-for="(post, index) in archive.posts" :key="index">
-          <router-link :to="{name: 'post', params: {category: post.category, slug: post.slug, year: archive.year}}" v-text="i18nify(post.title)"></router-link>
-          <span class="tag-button" v-text="i18nify(post.categoryTitle)" />
+          <router-link
+            :to="{name: 'post', params: {category: post.category, slug: post.slug, year: archive.year}}"
+            v-text="i18nify(post.title)"
+          />
+          <span
+            class="tag-button"
+            v-text="i18nify(post.categoryTitle)"
+          />
         </li>
-        <li v-if="archive.posts.length === 0" v-text="$t('archive.empty')"></li>
+        <li
+          v-if="archive.posts.length === 0"
+          v-text="$t('archive.empty')"
+        />
       </ul>
     </div>
 
     <div v-if="displayType === 'archive'" class="archive-body">
-      <h2 v-text="$t('archive.byCategory').replace(':', '')"></h2>
+      <h2 v-text="$t('archive.byCategory')" />
       <ul>
         <li v-for="(category, index) in archive.postsByCategory" :key="index">
           <h4>
-            <router-link :to="{name: 'archive-category', params: {category: category.slug}}" v-text="i18nify(category.title)"></router-link>
-            <span class="posts-number" v-text="category.posts.length"></span>
+            <router-link
+              :to="{name: 'archive-category', params: {category: category.slug}}"
+              v-text="i18nify(category.title)"
+            />
+            <span
+              class="posts-number"
+              v-text="category.posts.length"
+            />
           </h4>
           <ul>
             <li v-for="(post, index) in category.posts" :key="index">
-              <router-link :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}" v-text="i18nify(post.title)"></router-link>
-              <span class="show-date" v-text="'- ' + convertDateFormat(post.date)"></span>
+              <router-link
+                :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}"
+                v-text="i18nify(post.title)"
+              />
+              <span
+                class="show-date"
+                v-text="`- ${convertDateFormat(post.date, v => v.replace('-', '/'))}`"
+              />
             </li>
-            <li v-if="category.posts.length === 0" v-text="$t('archive.empty')"></li>
+            <li
+              v-if="category.posts.length === 0"
+              v-text="$t('archive.empty')"
+            />
           </ul>
         </li>
       </ul>
 
-      <h2 v-text="$t('archive.byYear').replace(':', '')"></h2>
+      <h2 v-text="$t('archive.byYear')" />
       <ul>
         <li v-for="(year, index) in archive.postsByYear" :key="index">
           <h4>
-            <router-link :to="{name: 'archive-year', params: {year: year.year}}" v-text="year.year"></router-link>
-            <span class="posts-number" v-text="year.posts.length"></span>
+            <router-link
+              :to="{name: 'archive-year', params: {year: year.year}}"
+              v-text="year.year"
+            />
+            <span
+              class="posts-number"
+              v-text="year.posts.length"
+            />
           </h4>
           <ul>
             <li v-for="(post, index) in year.posts" :key="index">
-              <router-link :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}" v-text="i18nify(post.title)"></router-link>
-              <span class="tag-button" v-text="i18nify(post.categoryTitle)" />
+              <router-link
+                :to="{name: 'post', params: {category: post.category, slug: post.slug, year: post.year}}"
+                v-text="i18nify(post.title)"
+              />
+              <span
+                class="tag-button"
+                v-text="i18nify(post.categoryTitle)"
+              />
             </li>
           </ul>
         </li>
@@ -104,19 +148,15 @@
       },
 
       title () {
-        var title = this.$t('archive.title')
-        var brand = retrieveByLanguage(this.config.brand, this.active, this.config.defaultLang)
+        let title = this.$t('archive.title')
+        const brand = retrieveByLanguage(this.config.brand, this.active, this.config.defaultLang)
         if (this.displayType === 'archive-category') {
-          title += ' | ' + retrieveByLanguage(this.archive.title, this.active, this.config.defaultLang)
+          title = `${title} | ${retrieveByLanguage(this.archive.title, this.active, this.config.defaultLang)}`
         }
         if (this.displayType === 'archive-year') {
-          title += ` | ${this.archive.year}`
+          title = `${title} | ${this.archive.year}`
         }
-        if (this.config.brandTrailing) {
-          return title + ' | ' + brand
-        } else {
-          return brand + ' | ' + title
-        }
+        return this.config.brandTrailing ? `${title} | ${brand}` : `${brand} | ${title}`
       }
     },
 
@@ -130,7 +170,7 @@
       },
 
       getPostsInCategory (slug) {
-        for (var i = 0; i < this.postsByCategory.length; i++) {
+        for (let i = 0; i < this.postsByCategory.length; i++) {
           if (this.postsByCategory[i].slug === slug) {
             return this.postsByCategory[i]
           }
@@ -144,7 +184,7 @@
           this.oops()
           return { posts: [], year }
         }
-        for (var i = 0; i < this.postsByYear.length; i++) {
+        for (let i = 0; i < this.postsByYear.length; i++) {
           if (this.postsByYear[i].year === year) {
             return this.postsByYear[i]
           }
@@ -160,19 +200,19 @@
         }
       },
       map (iter, fn) {
-        var res = []
-        var i = -1
+        let res = []
+        let i = -1
 
         while (++i < iter.length) {
-          var item = iter[i]
+          let item = iter[i]
 
           res.push(fn(item))
         }
 
-        return res.join('')
+        return res
       },
-      convertDateFormat (date) {
-        return date && date.length ? this.map(date, function (v) { return v.replace('-', '/') }) : date
+      convertDateFormat (date, fn) {
+        return date && date.length ? this.map(date, fn).join('') : date
       },
     },
 
