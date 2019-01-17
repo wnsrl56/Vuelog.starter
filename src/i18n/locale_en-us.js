@@ -1,6 +1,6 @@
 const enUS = {
   home: {
-    description: 'A backend-free blog system built on top of Vue.js',
+    description: '',
     download: 'Download v{0}',
     github: 'GitHub'
   },
@@ -14,16 +14,16 @@ const enUS = {
   archive: {
     title: 'Archive',
     empty: 'No posts found.',
-    inCategory: 'Posts in category {0}:',
+    inCategory: 'Posts in category {0}',
     inYear: 'Posts in year {0}:',
-    byCategory: 'Posts by Category:',
-    byYear: 'Posts by Year:',
-    pages: 'Pages:'
+    byCategory: 'Posts by Category',
+    byYear: 'Posts by Year',
+    pages: 'Pages'
   },
 
   reading: {
     blog: 'Blog',
-    continued: 'Continue reading ...',
+    continued: 'More ...',
     page: 'Page {0}'
   },
 
