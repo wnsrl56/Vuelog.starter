@@ -102,7 +102,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       },
       {
-        from: path.resolve(__dirname, '../vuelog.js.org'),
+        from: path.resolve(__dirname, '../wnsrl56.github.io'),
         to: path.resolve(config.build.assetsRoot, 'CNAME'),
         toType: 'file'
       }
