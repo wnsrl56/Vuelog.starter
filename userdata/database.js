@@ -97,6 +97,12 @@ window.VUELOG_DATABASE = {
     },
     {
       title: {
+        'en-US': 'HTML',
+      },
+      slug: 'html'
+    },
+    {
+      title: {
         'en-US': 'Dev',
       },
       slug: 'dev'
@@ -107,48 +113,123 @@ window.VUELOG_DATABASE = {
       },
       slug: 'log'
     },
+    {
+      title: {
+        'en-US': 'Linux',
+      },
+      slug: 'linux'
+    },
+    {
+      title: {
+        'en-US': 'Dev Ops',
+      },
+      slug: 'devops'
+    },
+    {
+      title: {
+        'en-US': 'Today I Learn',
+      },
+      slug: 'til'
+    },
+    {
+      title: {
+        'en-US': 'Vue',
+      },
+      slug: 'vue'
+    },
   ],
 
   posts: [
+    // 2019
     {
       title: {
-        'en-US': '테스트',
+        'en-US': 'heroku app을 이용한 static web 배포',
       },
-      slug: 'happy-new-year-2019',
-      category: 'js',
+      slug: '2019-01-20-deploy-heroku',
+      category: 'devops',
+      date: '2019-01-20'
+    },
+    {
+      title: {
+        'en-US': '한글 인코딩에 대한 생각',
+      },
+      slug: '2019-01-14-encode-hangul',
+      category: 'dev',
+      date: '2019-01-14'
+    },
+    {
+      title: {
+        'en-US': '2018년 회고록',
+      },
+      slug: '2019-01-04-happy-new-year-2019',
+      category: 'log',
       date: '2019-01-04'
     },
+    // 2018
     {
       title: {
-        'en-US': '테스트',
+        'en-US': '새로운 platform으로 이전',
       },
-      slug: 'happy-new-year-2019-2',
+      slug: '2018-12-22-new-blog-form',
+      category: 'log',
+      date: '2018-12-22'
+    },
+    {
+      title: {
+        'en-US': 'Vue 앱을 만드는 방법',
+      },
+      slug: '2018-10-11-how-to-create-vue-app',
+      category: 'vue',
+      date: '2018-10-11'
+    },
+    {
+      title: {
+        'en-US': 'dom Observe에 대한 생각들',
+      },
+      slug: '2018-08-02-TIL-observe',
+      category: 'html',
+      date: '2018-08-02'
+    },
+    {
+      title: {
+        'en-US': 'object composition way',
+      },
+      slug: '2018-07-18-TIL-object-composition',
+      category: 'til',
+      date: '2018-07-18'
+    },
+    {
+      title: {
+        'en-US': 'scp를 사용하는 방법',
+      },
+      slug: '2018-07-16-TIL-how-to-use-scp',
+      category: 'til',
+      date: '2018-07-16'
+    },
+    {
+      title: {
+        'en-US': 'you dont know js - 1',
+      },
+      slug: '2018-01-13-you-dont-know-js',
       category: 'js',
-      date: '2019-01-07'
+      date: '2018-01-13'
     },
     {
       title: {
-        'en-US': '테스트',
+        'en-US': '새로운 자바스크립트를 깨우치자',
       },
-      slug: 'happy-new-year-2019-3',
+      slug: '2018-01-11-start-study-group',
       category: 'log',
-      date: '2019-01-07'
+      date: '2018-01-11'
     },
+    // 2017
     {
       title: {
-        'en-US': '테스트2',
+        'en-US': 'dev log 시작합니다.',
       },
-      slug: 'ttt-1',
+      slug: '2017-12-20-start-my-blog',
       category: 'log',
-      date: '2019-01-07'
-    },
-    {
-      title: {
-        'en-US': '테스트2',
-      },
-      slug: 'ttt-1',
-      category: 'dev',
-      date: '2019-01-07'
+      date: '2017-12-20'
     },
   ]
 }
